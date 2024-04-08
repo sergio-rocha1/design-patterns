@@ -1,37 +1,33 @@
-# Projeto de Cálculo de Juros com Padrão Strategy
+# Projeto Exemplo do Padrão Strategy
 
-Este projeto exemplifica o uso do padrão de design Strategy no contexto de cálculo de juros para pedidos, permitindo a troca flexível entre diferentes estratégias de cálculo de juros, representadas aqui por diferentes bancos (Itau e Santander).
+Este projeto demonstra o uso do padrão de design Strategy, implementado em Java. O padrão Strategy é útil para situações em que é necessário selecionar um algoritmo de um conjunto de algoritmos em tempo de execução. Ele permite que o algoritmo varie independentemente dos clientes que o utilizam.
 
-## Pré-requisitos
+## Sobre o Padrão Strategy
 
-Antes de iniciar, assegure-se de que você tem o JDK (Java Development Kit) instalado em sua máquina. Este projeto foi desenvolvido usando o JDK 8, mas versões mais recentes devem ser compatíveis.
+O padrão Strategy define uma família de algoritmos, encapsula cada um deles, e os torna intercambiáveis. A estratégia permite que o algoritmo varie independentemente dos clientes que o usam. Isso é feito por meio de uma interface que representa uma ação ou um conjunto de ações, e várias implementações dessa interface que representam diferentes algoritmos.
 
-## Configurando o Ambiente
+### Quando Usar o Strategy
 
-1. **Clone o Repositório**: Primeiramente, clone o repositório do projeto para sua máquina local usando:
-   git clone URL_DO_REPOSITÓRIO
-2. **Abrindo o Projeto**: Abra a pasta do projeto clonado em sua IDE de Java preferida (por exemplo, IntelliJ IDEA, Eclipse, ou NetBeans).
+- Quando há vários algoritmos para uma tarefa específica e o cliente deve ser capaz de escolher qual algoritmo usar durante o tempo de execução.
+- Quando você quer evitar expor a complexidade dos algoritmos e suas estruturas de dados aos clientes.
+- Quando uma classe possui muitos comportamentos e esses comportamentos aparecem como múltiplas condicionais em suas operações.
 
-## Compilando o Projeto
+### Como Adicionar Novas Estratégias
 
-Para compilar o projeto, você pode utilizar o sistema de build integrado à sua IDE ou compilar manualmente através do terminal com o seguinte comando:
-    javac -d bin src/br/com/design/patterns/strategy/*.java
-Este comando compila todos os arquivos `.java` no diretório `src/br/com/design/patterns/strategy` e coloca os arquivos de classe resultantes no diretório `bin`.
+Para adicionar novas estratégias ao projeto atual, siga estes passos:
 
-## Executando o Projeto
+1. **Definir uma Nova Classe de Estratégia**: Crie uma nova classe que implemente a interface `CalculadoraJurosStrategyInterface`. Esta classe representará uma nova estratégia de cálculo de juros.
 
-Após compilar, você pode executar o projeto com o seguinte comando:
-    java -cp bin br.com.design.patterns.strategy.Main
-Isso irá executar a classe `Main`, iniciando o processo de cálculo de juros para um pedido usando inicialmente a estratégia do Itau, seguido pela estratégia do Santander, e exibirá os resultados no terminal.
+2. **Implementar o Método de Estratégia**: Na sua nova classe de estratégia, implemente o método `getTaxaDeJuros`, definindo a lógica específica para calcular a taxa de juros conforme desejado.
 
-## Entendendo o Código
+3. **Utilizar a Nova Estratégia**: No cliente (por exemplo, na classe `Main` ou em qualquer outra parte do seu aplicativo onde seja necessário calcular juros), instancie a nova estratégia e passe-a para o construtor ou setter da classe `CalculadoraDeJuros`.
 
-O projeto utiliza o padrão Strategy para permitir a troca de algoritmos de cálculo de juros em tempo de execução sem alterar o código que usa o algoritmo de cálculo. A interface `CalculadoraJurosStrategyInterface` define o contrato para as estratégias de cálculo de juros, enquanto as classes `Itau` e `Santander` implementam esta interface, oferecendo diferentes taxas de juros. A classe `Pedido` representa um pedido com um valor total, e a classe `CalculadoraDeJuros` é responsável por calcular os juros do pedido usando a estratégia especificada.
+### Como Executar o Projeto
 
-## Conclusão
+Para executar este projeto, é necessário ter o JDK instalado. Siga os passos abaixo:
 
-Este projeto demonstra a flexibilidade e a força do padrão de design Strategy, facilitando a adição de novas estratégias de cálculo de juros sem modificar o código existente que realiza o cálculo.
-
-
-
-
+1. **Compilar o Projeto**: Navegue até o diretório do projeto no terminal e compile o projeto com o comando:
+   javac Main.java
+2. **Executar o Projeto**: Após a compilação, execute o projeto com:
+   java Main
+3. **Verificar os Resultados**: O programa calculará e exibirá os juros para um `Pedido` usando diferentes estratégias (`Itau`, `Santander`), demonstrando a flexibilidade do padrão Strategy em tempo de execução.
