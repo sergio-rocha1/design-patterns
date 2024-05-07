@@ -1,0 +1,1 @@
+## Ainda não implementado o padrão de projeto (Pendente)
